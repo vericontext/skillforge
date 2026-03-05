@@ -1,0 +1,9 @@
+{
+  "name": "__PLUGIN_NAME__",
+  "version": "0.1.0",
+  "description": "__PLUGIN_DESCRIPTION__",
+  "author": "",
+  "skills": [
+    "skills/__SKILL_NAME__"
+  ]
+}

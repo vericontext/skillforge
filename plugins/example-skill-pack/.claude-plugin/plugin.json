@@ -1,0 +1,9 @@
+{
+  "name": "example-skill-pack",
+  "version": "0.1.0",
+  "description": "An example skill pack demonstrating the plugin structure for Claude Code.",
+  "author": "",
+  "skills": [
+    "skills/example-skill"
+  ]
+}
