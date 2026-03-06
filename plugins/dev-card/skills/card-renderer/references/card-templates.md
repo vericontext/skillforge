@@ -89,6 +89,16 @@ All `{{PLACEHOLDER}}` values must be replaced with actual data before writing to
   <text x="588" y="520" font-family="'JetBrains Mono',Menlo,Monaco,monospace"
         font-size="12" fill="{{TEXT_DIM}}">{{PERIOD_FROM}} — {{PERIOD_TO}}</text>
 
+  <!-- Rank Badge (top-right corner) -->
+  <circle cx="1140" cy="52" r="26" fill="{{ACCENT}}" />
+  <text x="1140" y="60" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="24" font-weight="800" fill="{{BG}}">{{RANK}}</text>
+
+  <!-- Commit Heatmap (12 weeks, 7 rows x 12 cols) -->
+  <!-- Positioned at bottom center, above watermark -->
+  {{HEATMAP_GRID}}
+
   <!-- Watermark -->
   <text x="600" y="655" font-family="'JetBrains Mono',Menlo,Monaco,monospace"
         font-size="11" fill="{{TEXT_DIM}}" text-anchor="middle">── Generated with dev-card ──</text>
@@ -223,3 +233,40 @@ Compact horizontal layout for GitHub README embedding.
 - For long text (description, fun stat), split into multiple `<tspan>` elements at ~50 characters per line
 - Badge widths for persona badges: estimate ~8px per character + 24px padding
 - Write the final SVG directly to file using the Write tool — no build step needed
+
+### Rank Badge
+
+A circular badge in the top-right corner showing the developer's rank (S/A/B/C). The `{{RANK}}` placeholder is replaced with the rank letter from `persona.json`.
+
+- Circle: cx=1140, cy=52, r=26, filled with `{{ACCENT}}`
+- Text: centered in circle, font-size 24, bold, filled with `{{BG}}` for contrast
+
+### Commit Heatmap Grid
+
+The `{{HEATMAP_GRID}}` placeholder is replaced with a grid of `<rect>` elements representing daily commit activity for the past 12 weeks. Layout mimics GitHub's contribution graph.
+
+**Grid layout:**
+- 7 rows (Mon=0 to Sun=6) x 12 columns (weeks, oldest left to newest right)
+- Each cell: 8x8 `<rect>` with 1px gap (9px pitch)
+- Grid origin: x=492, y=555 (centered in the 1200px card width)
+- Total grid size: ~120px wide (12 * 9 + 8) x ~71px tall (7 * 9 + 8)
+
+**Color scale (5 levels):**
+- Level 0 (count=0): `{{BAR_BG}}` (theme's barBg / empty color)
+- Level 1 (count=1): accent color at 25% opacity
+- Level 2 (count=2-3): accent color at 50% opacity
+- Level 3 (count=4-6): accent color at 75% opacity
+- Level 4 (count>=7): accent color at 100%
+
+To apply opacity to the accent color, use `opacity` attribute on the rect:
+```svg
+<rect x="{{CELL_X}}" y="{{CELL_Y}}" width="8" height="8" rx="2" fill="{{ACCENT}}" opacity="{{LEVEL_OPACITY}}" />
+```
+Where LEVEL_OPACITY is: 0.15 (level 0 uses BAR_BG instead), 0.25, 0.50, 0.75, 1.0.
+
+For level 0, use `fill="{{BAR_BG}}"` without opacity.
+
+**Data mapping:**
+- `heatmap` array from `git-analysis.json` has 84 entries sorted ascending by date
+- Entry 0 → column 0 row=dayOfWeek(date), Entry 1 → next day, etc.
+- Map each entry to grid position: `col = Math.floor(index / 7)`, `row = index % 7` (assuming data starts on Monday of the oldest week; adjust if needed to align days correctly)

@@ -105,6 +105,27 @@ When `--lang=ko`:
 
 Only generate fields for the selected language. Do NOT include both languages in the same persona.json.
 
+**Rank calculation:**
+
+Compute a score from 0-100 based on four equally-weighted factors:
+
+```
+commitScore   = min(commits.total / 500, 1) * 25
+streakScore   = min(streaks.longest / 30, 1) * 25
+languageScore = min(languages.length / 4, 1) * 25
+steadyScore   = (1 - pattern.weeklyCv) * 25     // lower CV = more consistent = higher score
+```
+
+`totalScore = commitScore + streakScore + languageScore + steadyScore` (clamp 0-100)
+
+Rank thresholds:
+- **S**: score >= 90
+- **A**: score >= 70
+- **B**: score >= 50
+- **C**: score < 50
+
+Add the `rank` field (single letter: `S`, `A`, `B`, or `C`) to `persona.json`.
+
 Save as `$OUTPUT_DIR/persona.json`.
 
 ### Step 4: Card Rendering

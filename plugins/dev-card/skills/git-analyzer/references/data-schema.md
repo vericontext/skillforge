@@ -82,6 +82,10 @@ The `git-analysis.json` output must follow this structure:
 
   "topFiles": [
     { "name": "string", "changes": "number" }
+  ],
+
+  "heatmap": [
+    { "date": "string - YYYY-MM-DD", "count": "number" }
   ]
 }
 ```
@@ -93,5 +97,6 @@ The `git-analysis.json` output must follow this structure:
 - `languages` array is sorted by percentage descending, max 6 entries (top 5 + "Other")
 - `topDirectories` max 5 entries
 - `topFiles` max 5 entries
+- `heatmap` contains exactly 84 entries (12 weeks), sorted ascending by date
 - `hourly` must have all 24 keys (0-23), defaulting to 0 if no commits at that hour
 - `dayDistribution` must have all 7 keys

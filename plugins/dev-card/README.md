@@ -9,6 +9,12 @@ Generate a developer identity card from your git history. Analyzes commit patter
 claude plugin marketplace add https://github.com/vericontext/claude-skills && claude plugin install dev-card
 ```
 
+## Update
+
+```bash
+claude plugin marketplace update && claude plugin update dev-card
+```
+
 That's it. Now go to any git repo and run:
 
 ```

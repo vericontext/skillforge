@@ -66,7 +66,8 @@ When `--lang=en`:
   "title": "The Dawn Architect",
   "description": "A builder who thrives in the quiet hours before the world wakes up.",
   "badges": ["Early Bird", "Clean Coder", "Builder"],
-  "funStat": "You've committed code at 4 AM more than most people have committed at all."
+  "funStat": "You've committed code at 4 AM more than most people have committed at all.",
+  "rank": "A"
 }
 ```
 
@@ -76,11 +77,14 @@ When `--lang=ko`:
   "title": "새벽형 설계자",
   "description": "세상이 깨어나기 전 조용한 시간에 빛나는 개발자.",
   "badges": ["얼리버드", "클린코더", "빌더"],
-  "funStat": "대부분의 사람들이 커밋한 횟수보다 새벽 4시에 커밋한 횟수가 더 많습니다."
+  "funStat": "대부분의 사람들이 커밋한 횟수보다 새벽 4시에 커밋한 횟수가 더 많습니다.",
+  "rank": "A"
 }
 ```
 
-The field names are always `title`, `description`, `badges`, `funStat` regardless of language.
+The field names are always `title`, `description`, `badges`, `funStat`, `rank` regardless of language.
+
+The `rank` field is a single letter: `S`, `A`, `B`, or `C`. It is computed by the card-director agent based on commit activity metrics. The rank badge is rendered as a circle in the top-right corner of the Twitter card.
 
 ## Error Handling
 

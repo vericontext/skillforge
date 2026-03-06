@@ -101,14 +101,31 @@ All commit dates (date only, deduplicated):
 git log --author="$AUTHOR" --format='%aI' | cut -dT -f1 | sort -u
 ```
 
-## 8. Top Directories
+## 8. Daily Commit Counts (Heatmap)
+
+Collect daily commit counts for the most recent 84 days (12 weeks). This powers the commit heatmap on the card.
+
+```bash
+for i in $(seq 0 83); do d=$(date -v-${i}d +%Y-%m-%d 2>/dev/null || date -d "$i days ago" +%Y-%m-%d); c=$(git log --author="$AUTHOR" --after="$d 00:00" --before="$d 23:59:59" --oneline | wc -l); echo "$d $c"; done
+```
+
+On Linux (if `date -v` is not available):
+```bash
+for i in $(seq 0 83); do d=$(date -d "$i days ago" +%Y-%m-%d); c=$(git log --author="$AUTHOR" --after="$d 00:00" --before="$d 23:59:59" --oneline | wc -l); echo "$d $c"; done
+```
+
+Output format: one line per day, `YYYY-MM-DD COUNT`, most recent first.
+
+Parse into an array of `{ "date": "YYYY-MM-DD", "count": N }` objects sorted ascending by date.
+
+## 9. Top Directories
 
 Most modified directories (top-level):
 ```bash
 git log --author="$AUTHOR" -500 --pretty=format: --name-only | grep -v '^$' | cut -d'/' -f1 | sort | uniq -c | sort -rn | head -10
 ```
 
-## 9. Top Files
+## 10. Top Files
 
 Most modified files:
 ```bash
