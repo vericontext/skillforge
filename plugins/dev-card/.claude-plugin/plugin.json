@@ -1,6 +1,6 @@
 {
   "name": "dev-card",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Generate a developer identity card from git history. Analyzes commits, assigns an AI persona, and renders a shareable Twitter/X card image.",
   "author": {
     "name": "vericontext"
