@@ -58,20 +58,29 @@ Report the file paths to the user. SVG files can be:
 
 ## Persona JSON Format
 
-The `persona.json` file (created by Claude, not this skill) must contain:
+The `persona.json` file (created by Claude, not this skill) contains only the selected language's fields.
 
+When `--lang=en`:
 ```json
 {
   "title": "The Dawn Architect",
-  "titleKo": "새벽형 설계자",
   "description": "A builder who thrives in the quiet hours before the world wakes up.",
-  "descriptionKo": "세상이 깨어나기 전 조용한 시간에 빛나는 개발자.",
   "badges": ["Early Bird", "Clean Coder", "Builder"],
-  "badgesKo": ["얼리버드", "클린코더", "빌더"],
-  "funStat": "You've committed code at 4 AM more than most people have committed at all.",
-  "funStatKo": "대부분의 사람들이 커밋한 횟수보다 새벽 4시에 커밋한 횟수가 더 많습니다."
+  "funStat": "You've committed code at 4 AM more than most people have committed at all."
 }
 ```
+
+When `--lang=ko`:
+```json
+{
+  "title": "새벽형 설계자",
+  "description": "세상이 깨어나기 전 조용한 시간에 빛나는 개발자.",
+  "badges": ["얼리버드", "클린코더", "빌더"],
+  "funStat": "대부분의 사람들이 커밋한 횟수보다 새벽 4시에 커밋한 횟수가 더 많습니다."
+}
+```
+
+The field names are always `title`, `description`, `badges`, `funStat` regardless of language.
 
 ## Error Handling
 

@@ -89,11 +89,21 @@ Default (if nothing matches):
 |-----------|------------|
 | The Code Artisan | 코드 장인 |
 
-**Generate these fields:**
-- `title` / `titleKo`: Persona title
-- `description` / `descriptionKo`: 1-2 sentence description of this developer archetype (be creative and slightly humorous)
-- `badges` / `badgesKo`: 3 characteristic badges derived from the data. Pick from the developer's actual traits (e.g., "Early Bird" if dawn%, "Clean Coder" if high conventional ratio, "Polyglot" if 3+ languages, "Streak Master" if long streak, etc.)
-- `funStat` / `funStatKo`: One surprising or amusing statistic from the analysis data. Be specific with numbers.
+**Generate these fields based on `--lang`:**
+
+When `--lang=en` (default):
+- `title`: Persona title in English
+- `description`: 1-2 sentence description (creative, slightly humorous)
+- `badges`: 3 characteristic badges in English
+- `funStat`: One surprising statistic. Be specific with numbers.
+
+When `--lang=ko`:
+- `title`: Persona title in Korean (from the ko column above)
+- `description`: 1-2 sentence description in Korean
+- `badges`: 3 characteristic badges in Korean
+- `funStat`: One surprising statistic in Korean
+
+Only generate fields for the selected language. Do NOT include both languages in the same persona.json.
 
 Save as `$OUTPUT_DIR/persona.json`.
 

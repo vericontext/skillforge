@@ -218,6 +218,7 @@ Compact horizontal layout for GitHub README embedding.
 ## Template Usage Notes
 
 - Claude reads the analysis/persona JSON, then generates the complete SVG by substituting all `{{PLACEHOLDER}}` values
+- `persona.json` always uses `title`, `description`, `badges`, `funStat` field names regardless of language — use them directly without language switching logic
 - Text that might contain XML special characters must be escaped: `&` -> `&amp;`, `<` -> `&lt;`, `>` -> `&gt;`
 - For long text (description, fun stat), split into multiple `<tspan>` elements at ~50 characters per line
 - Badge widths for persona badges: estimate ~8px per character + 24px padding
