@@ -74,18 +74,39 @@ Skills are auto-discovered from the `skills/` directory - no need to list them i
 
 ## Deployment
 
-### Marketplace (recommended)
+### Install from marketplace (for end users)
+
+End users can install plugins without cloning the repo:
+
 ```bash
-claude plugin marketplace add <repo-url>
+# 1. Register this repo as a marketplace (once)
+claude plugin marketplace add https://github.com/vericontext/claude-skills
+
+# 2. Install a specific plugin
 claude plugin install <plugin-name>
+
+# 3. Use slash commands in any project
+/dev-card
 ```
 
-### Validate
+Installed plugins persist across sessions — no need to re-register.
+
+### Update plugins
+
+```bash
+# Update marketplace index
+claude plugin marketplace update
+
+# Update a specific plugin
+claude plugin update <plugin-name>
+```
+
+### Validate (for development)
 ```bash
 claude plugin validate plugins/<plugin-name>
 ```
 
-### Local testing
+### Local testing (for development)
 ```bash
 claude --plugin-dir plugins/<plugin-name>
 ```

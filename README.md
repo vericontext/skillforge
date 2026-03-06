@@ -30,20 +30,23 @@ claude --plugin-dir plugins/my-plugin-name
 
 ## Installation
 
-Users can install plugins from this repository:
+### From marketplace (recommended)
 
 ```bash
-# Add this repo as a marketplace
-claude marketplace add <github-url>
+# 1. Register this repo as a marketplace (once)
+claude plugin marketplace add https://github.com/vericontext/claude-skills
 
-# Install a specific plugin
-claude plugin install <plugin-name>
+# 2. Install a plugin
+claude plugin install dev-card
+
+# 3. Use it in any git repo
+/dev-card
 ```
 
-Or install a plugin directly:
+### Local testing (for development)
 
 ```bash
-claude plugin add <github-url>/plugins/<plugin-name>
+claude --plugin-dir plugins/dev-card
 ```
 
 ## Project Structure
