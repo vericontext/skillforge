@@ -33,25 +33,23 @@ claude --plugin-dir plugins/my-plugin-name
 ### From marketplace (recommended)
 
 ```bash
-claude plugin marketplace add https://github.com/vericontext/claude-skills && claude plugin install dev-card
-```
+# 1. Register marketplace (once)
+claude plugin marketplace add https://github.com/vericontext/claude-skills
 
-Then in any git repo:
-
-```
-/dev-card
+# 2. Install a plugin
+claude plugin install <plugin-name>
 ```
 
 ### Update
 
 ```bash
-claude plugin marketplace update && claude plugin update dev-card
+claude plugin marketplace update && claude plugin update <plugin-name>
 ```
 
 ### Local testing (for development)
 
 ```bash
-claude --plugin-dir plugins/dev-card
+claude --plugin-dir plugins/<plugin-name>
 ```
 
 ## Project Structure
