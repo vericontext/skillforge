@@ -1,0 +1,8 @@
+{
+  "name": "paper-dissector",
+  "version": "0.1.0",
+  "description": "Deeply analyze academic papers from PDF. Extracts structured analysis, generates markdown summaries, renders visual summary cards, and enables interactive Q&A.",
+  "author": {
+    "name": "vericontext"
+  }
+}
