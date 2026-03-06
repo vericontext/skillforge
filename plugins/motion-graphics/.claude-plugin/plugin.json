@@ -1,0 +1,8 @@
+{
+  "name": "motion-graphics",
+  "version": "0.2.0",
+  "description": "Turn a logo into a branded promo video with Gemini AI. Also includes manual video composition, animation, and templates with Remotion.",
+  "author": {
+    "name": "vericontext"
+  }
+}
