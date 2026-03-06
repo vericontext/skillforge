@@ -42,10 +42,11 @@ Each theme defines: background color, text colors, accent color, accent gradient
 Using the template from card-templates.md:
 1. Replace all theme color values
 2. Insert persona data (title, description, badges, fun stat)
-3. Insert stats (commits, streak, ratio, peak hour/day, conventional %)
+3. The 6 stat boxes and rank badge are already defined in the template — just replace the `{{PLACEHOLDER}}` values (COMMITS, STREAK, ADD_DEL_RATIO, PEAK_HOUR, PEAK_DAY, CONVENTIONAL_PCT, RANK)
 4. Build the language bar as SVG `<rect>` elements with colors from `${CLAUDE_PLUGIN_ROOT}/skills/card-renderer/references/language-colors.md`
-5. Write the complete SVG to `$OUTPUT_DIR/dev-card.svg`
-6. If `--badge`, also write `$OUTPUT_DIR/dev-card-badge.svg`
+5. Generate 84 `<rect>` elements for `{{HEATMAP_CELLS}}` from `git-analysis.json` heatmap data (see template comments for positioning and color rules)
+6. Write the complete SVG to `$OUTPUT_DIR/dev-card.svg`
+7. If `--badge`, also write `$OUTPUT_DIR/dev-card-badge.svg`
 
 ## Step 5: Verify Output
 

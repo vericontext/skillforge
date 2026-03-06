@@ -70,11 +70,72 @@ All `{{PLACEHOLDER}}` values must be replaced with actual data before writing to
 
   <!-- RIGHT COLUMN: Stats -->
 
-  <!-- Stats Grid (2 rows x 3 cols) -->
-  <!-- Row 1 -->
-  {{STAT_BOXES_ROW1}}
-  <!-- Row 2 -->
-  {{STAT_BOXES_ROW2}}
+  <!-- Rank Badge (top-right corner) -->
+  <circle cx="1140" cy="52" r="26" fill="{{ACCENT}}" />
+  <text x="1140" y="60" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="24" font-weight="800" fill="{{BG}}">{{RANK}}</text>
+
+  <!-- Stats Grid: 6 boxes, 3 cols x 2 rows. Each box 176x78. -->
+  <!-- Row 1, Col 1: Commits -->
+  <rect x="588" y="140" width="176" height="78" rx="8"
+        fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
+  <text x="676" y="175" text-anchor="middle"
+        font-family="'JetBrains Mono',Menlo,Monaco,monospace"
+        font-size="22" font-weight="700" fill="{{TEXT}}">{{COMMITS}}</text>
+  <text x="676" y="198" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="11" fill="{{TEXT_MUTED}}" text-transform="uppercase" letter-spacing="0.5">COMMITS</text>
+
+  <!-- Row 1, Col 2: Streak -->
+  <rect x="776" y="140" width="176" height="78" rx="8"
+        fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
+  <text x="864" y="175" text-anchor="middle"
+        font-family="'JetBrains Mono',Menlo,Monaco,monospace"
+        font-size="22" font-weight="700" fill="{{TEXT}}">{{STREAK}}d</text>
+  <text x="864" y="198" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="11" fill="{{TEXT_MUTED}}" text-transform="uppercase" letter-spacing="0.5">BEST STREAK</text>
+
+  <!-- Row 1, Col 3: Add/Del Ratio -->
+  <rect x="964" y="140" width="176" height="78" rx="8"
+        fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
+  <text x="1052" y="175" text-anchor="middle"
+        font-family="'JetBrains Mono',Menlo,Monaco,monospace"
+        font-size="22" font-weight="700" fill="{{TEXT}}">{{ADD_DEL_RATIO}}</text>
+  <text x="1052" y="198" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="11" fill="{{TEXT_MUTED}}" text-transform="uppercase" letter-spacing="0.5">ADD/DEL</text>
+
+  <!-- Row 2, Col 1: Peak Hour -->
+  <rect x="588" y="230" width="176" height="78" rx="8"
+        fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
+  <text x="676" y="265" text-anchor="middle"
+        font-family="'JetBrains Mono',Menlo,Monaco,monospace"
+        font-size="22" font-weight="700" fill="{{TEXT}}">{{PEAK_HOUR}}</text>
+  <text x="676" y="288" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="11" fill="{{TEXT_MUTED}}" text-transform="uppercase" letter-spacing="0.5">PEAK HOUR</text>
+
+  <!-- Row 2, Col 2: Peak Day -->
+  <rect x="776" y="230" width="176" height="78" rx="8"
+        fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
+  <text x="864" y="265" text-anchor="middle"
+        font-family="'JetBrains Mono',Menlo,Monaco,monospace"
+        font-size="22" font-weight="700" fill="{{TEXT}}">{{PEAK_DAY}}</text>
+  <text x="864" y="288" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="11" fill="{{TEXT_MUTED}}" text-transform="uppercase" letter-spacing="0.5">PEAK DAY</text>
+
+  <!-- Row 2, Col 3: Conventional % -->
+  <rect x="964" y="230" width="176" height="78" rx="8"
+        fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
+  <text x="1052" y="265" text-anchor="middle"
+        font-family="'JetBrains Mono',Menlo,Monaco,monospace"
+        font-size="22" font-weight="700" fill="{{TEXT}}">{{CONVENTIONAL_PCT}}%</text>
+  <text x="1052" y="288" text-anchor="middle"
+        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="11" fill="{{TEXT_MUTED}}" text-transform="uppercase" letter-spacing="0.5">CONVENTIONAL</text>
 
   <!-- Language Bar -->
   <g clip-path="url(#lang-bar-clip)">
@@ -89,46 +150,26 @@ All `{{PLACEHOLDER}}` values must be replaced with actual data before writing to
   <text x="588" y="520" font-family="'JetBrains Mono',Menlo,Monaco,monospace"
         font-size="12" fill="{{TEXT_DIM}}">{{PERIOD_FROM}} — {{PERIOD_TO}}</text>
 
-  <!-- Rank Badge (top-right corner) -->
-  <circle cx="1140" cy="52" r="26" fill="{{ACCENT}}" />
-  <text x="1140" y="60" text-anchor="middle"
-        font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
-        font-size="24" font-weight="800" fill="{{BG}}">{{RANK}}</text>
-
-  <!-- Commit Heatmap (12 weeks, 7 rows x 12 cols) -->
-  <!-- Positioned at bottom center, above watermark -->
-  {{HEATMAP_GRID}}
+  <!-- Commit Heatmap: 7 rows (Mon-Sun) x 12 cols (weeks). Each cell 8x8, gap 1px. -->
+  <!-- Origin: x=492, y=558. Generate 84 <rect> elements from heatmap[] array. -->
+  <!-- Example (first 3 cells of week 0): -->
+  <!--
+  <rect x="492" y="558" width="8" height="8" rx="2" fill="{{BAR_BG}}" />
+  <rect x="492" y="567" width="8" height="8" rx="2" fill="{{ACCENT}}" opacity="0.25" />
+  <rect x="492" y="576" width="8" height="8" rx="2" fill="{{ACCENT}}" opacity="0.75" />
+  -->
+  <!-- Cell position: x = 492 + col*9, y = 558 + row*9 -->
+  <!-- col = Math.floor(dayIndex / 7), row = dayIndex % 7 -->
+  <!-- Color: count==0 → fill="{{BAR_BG}}", count==1 → accent opacity 0.25, -->
+  <!--         count 2-3 → opacity 0.50, count 4-6 → opacity 0.75, count>=7 → opacity 1.0 -->
+  <!-- IMPORTANT: Generate ALL 84 rect elements. Do NOT skip any. -->
+  {{HEATMAP_CELLS}}
 
   <!-- Watermark -->
   <text x="600" y="655" font-family="'JetBrains Mono',Menlo,Monaco,monospace"
         font-size="11" fill="{{TEXT_DIM}}" text-anchor="middle">── Generated with dev-card ──</text>
 </svg>
 ```
-
-### Stat Box Helper
-
-Each stat box is a group of SVG elements. Generate 6 boxes in a 3x2 grid.
-
-Grid positions (x, y for top-left of each box):
-- Row 1: (588, 140), (776, 140), (964, 140)
-- Row 2: (588, 230), (776, 230), (964, 230)
-
-Each box is 176x78:
-
-```svg
-<!-- Stat box template -->
-<rect x="{{BOX_X}}" y="{{BOX_Y}}" width="176" height="78" rx="8"
-      fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
-<text x="{{BOX_CX}}" y="{{BOX_Y+35}}" text-anchor="middle"
-      font-family="'JetBrains Mono',Menlo,Monaco,monospace"
-      font-size="22" font-weight="700" fill="{{TEXT}}">{{VALUE}}</text>
-<text x="{{BOX_CX}}" y="{{BOX_Y+58}}" text-anchor="middle"
-      font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
-      font-size="11" fill="{{TEXT_MUTED}}" text-transform="uppercase"
-      letter-spacing="0.5">{{LABEL}}</text>
-```
-
-Where `BOX_CX = BOX_X + 88` (center of 176px width).
 
 ### Language Bar Rects
 
@@ -234,39 +275,3 @@ Compact horizontal layout for GitHub README embedding.
 - Badge widths for persona badges: estimate ~8px per character + 24px padding
 - Write the final SVG directly to file using the Write tool — no build step needed
 
-### Rank Badge
-
-A circular badge in the top-right corner showing the developer's rank (S/A/B/C). The `{{RANK}}` placeholder is replaced with the rank letter from `persona.json`.
-
-- Circle: cx=1140, cy=52, r=26, filled with `{{ACCENT}}`
-- Text: centered in circle, font-size 24, bold, filled with `{{BG}}` for contrast
-
-### Commit Heatmap Grid
-
-The `{{HEATMAP_GRID}}` placeholder is replaced with a grid of `<rect>` elements representing daily commit activity for the past 12 weeks. Layout mimics GitHub's contribution graph.
-
-**Grid layout:**
-- 7 rows (Mon=0 to Sun=6) x 12 columns (weeks, oldest left to newest right)
-- Each cell: 8x8 `<rect>` with 1px gap (9px pitch)
-- Grid origin: x=492, y=555 (centered in the 1200px card width)
-- Total grid size: ~120px wide (12 * 9 + 8) x ~71px tall (7 * 9 + 8)
-
-**Color scale (5 levels):**
-- Level 0 (count=0): `{{BAR_BG}}` (theme's barBg / empty color)
-- Level 1 (count=1): accent color at 25% opacity
-- Level 2 (count=2-3): accent color at 50% opacity
-- Level 3 (count=4-6): accent color at 75% opacity
-- Level 4 (count>=7): accent color at 100%
-
-To apply opacity to the accent color, use `opacity` attribute on the rect:
-```svg
-<rect x="{{CELL_X}}" y="{{CELL_Y}}" width="8" height="8" rx="2" fill="{{ACCENT}}" opacity="{{LEVEL_OPACITY}}" />
-```
-Where LEVEL_OPACITY is: 0.15 (level 0 uses BAR_BG instead), 0.25, 0.50, 0.75, 1.0.
-
-For level 0, use `fill="{{BAR_BG}}"` without opacity.
-
-**Data mapping:**
-- `heatmap` array from `git-analysis.json` has 84 entries sorted ascending by date
-- Entry 0 → column 0 row=dayOfWeek(date), Entry 1 → next day, etc.
-- Map each entry to grid position: `col = Math.floor(index / 7)`, `row = index % 7` (assuming data starts on Monday of the oldest week; adjust if needed to align days correctly)
