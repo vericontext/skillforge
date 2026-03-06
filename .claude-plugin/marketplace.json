@@ -1,0 +1,50 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-skills",
+  "description": "Community skill plugins for Claude Code - developer cards, motion graphics, and more",
+  "owner": {
+    "name": "vericontext"
+  },
+  "plugins": [
+    {
+      "name": "example-skill-pack",
+      "description": "Example plugin demonstrating the plugin structure for Claude Code",
+      "version": "0.1.0",
+      "author": {
+        "name": "vericontext"
+      },
+      "source": "./plugins/example-skill-pack",
+      "category": "development"
+    },
+    {
+      "name": "dev-card",
+      "description": "Generate a developer identity card from git history. Analyzes commits, assigns an AI persona, and renders a shareable SVG card.",
+      "version": "0.1.0",
+      "author": {
+        "name": "vericontext"
+      },
+      "source": "./plugins/dev-card",
+      "category": "productivity"
+    },
+    {
+      "name": "carousel-maker",
+      "description": "Create carousel slide decks with structured content and styled rendering",
+      "version": "0.1.0",
+      "author": {
+        "name": "vericontext"
+      },
+      "source": "./plugins/carousel-maker",
+      "category": "productivity"
+    },
+    {
+      "name": "motion-graphics",
+      "description": "Create motion graphics with Remotion and Gemini AI",
+      "version": "0.1.0",
+      "author": {
+        "name": "vericontext"
+      },
+      "source": "./plugins/motion-graphics",
+      "category": "development"
+    }
+  ]
+}
