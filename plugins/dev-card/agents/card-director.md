@@ -119,12 +119,46 @@ Use the **card-renderer** skill to generate the SVG card(s) directly.
 
 No npm, no Node.js, no build step required. Claude writes the SVG files directly.
 
-### Step 5: Results Summary
+### Step 5: PNG Conversion
+
+Convert SVG to PNG for direct Twitter/X upload. Try the following tools in order — use the first one that succeeds:
+
+1. **qlmanage** (macOS built-in):
+   ```bash
+   qlmanage -t -s 1200 -o $OUTPUT_DIR $OUTPUT_DIR/dev-card.svg 2>/dev/null && mv $OUTPUT_DIR/dev-card.svg.png $OUTPUT_DIR/dev-card.png
+   ```
+
+2. **rsvg-convert** (Linux, commonly pre-installed):
+   ```bash
+   rsvg-convert -w 1200 $OUTPUT_DIR/dev-card.svg -o $OUTPUT_DIR/dev-card.png
+   ```
+
+3. **inkscape** (cross-platform):
+   ```bash
+   inkscape $OUTPUT_DIR/dev-card.svg --export-type=png --export-filename=$OUTPUT_DIR/dev-card.png --export-width=1200
+   ```
+
+4. **ImageMagick convert** (cross-platform):
+   ```bash
+   convert $OUTPUT_DIR/dev-card.svg $OUTPUT_DIR/dev-card.png
+   ```
+
+To check which tool is available:
+```bash
+command -v qlmanage || command -v rsvg-convert || command -v inkscape || command -v convert
+```
+
+If `--badge` was requested, also convert `dev-card-badge.svg` to `dev-card-badge.png` using the same tool (with width 800).
+
+If no conversion tool is found, keep the SVG files and inform the user:
+> "PNG conversion tool not found. You can open the SVG in a browser and take a screenshot, or install ImageMagick (`brew install imagemagick` / `apt install imagemagick`)."
+
+### Step 6: Results Summary
 
 Present the results to the user:
 
 1. **Persona**: Show the assigned title and description
-2. **Files generated**: List all output files with sizes
+2. **Files generated**: List all output files with sizes (highlight PNG if conversion succeeded)
 3. **Twitter share text**: Suggest a tweet, e.g.:
    ```
    I'm "The Dawn Architect"
@@ -134,7 +168,7 @@ Present the results to the user:
    #DevCard #CodeStats
    ```
    (Korean variant if `--lang=ko`)
-4. **Next steps**: Suggest sharing on Twitter/X, adding badge to README, or converting to PNG if needed
+4. **Next steps**: Suggest sharing on Twitter/X, adding badge to README
 
 ## Error Recovery
 

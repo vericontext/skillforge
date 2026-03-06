@@ -17,7 +17,7 @@ That's it. Now go to any git repo and run:
 
 ## What You Get
 
-A **1200x675 SVG** card optimized for Twitter/X sharing:
+A **1200x675 card** (SVG + auto-converted PNG) ready for Twitter/X:
 
 - AI-assigned persona title (e.g., "The Dawn Architect", "Midnight Bug Slayer")
 - Stats grid: commits, streak, add/delete ratio, peak hour, peak day, conventional commit %
@@ -48,9 +48,9 @@ A **1200x675 SVG** card optimized for Twitter/X sharing:
 
 1. **Git Analysis** - Runs git log commands locally to collect commit patterns, timing, languages, streaks, and code churn
 2. **Persona Assignment** - Claude analyzes the data and assigns a developer persona with title, description, badges, and a fun stat
-3. **Card Rendering** - Claude generates SVG directly — zero external dependencies
+3. **Card Rendering** - Claude generates SVG, then auto-converts to PNG for Twitter upload
 
-All analysis is **100% local** - works with private repos, no data leaves your machine.
+All analysis is **local** - no data leaves your machine.
 
 ## Themes
 
@@ -70,16 +70,12 @@ All analysis is **100% local** - works with private repos, no data leaves your m
 dev-card-output/
 ├── git-analysis.json    # Raw analysis data
 ├── persona.json         # AI-assigned persona
-├── dev-card.svg         # Twitter card (1200x675)
-└── dev-card-badge.svg   # GitHub badge (800x200, if --badge)
+├── dev-card.svg         # Card source (editable)
+├── dev-card.png         # Twitter-ready (auto-converted)
+└── dev-card-badge.png   # GitHub badge (if --badge)
 ```
 
-## PNG Conversion (Optional)
-
-If you need PNG for Twitter upload:
-- **macOS**: `sips -s format png dev-card.svg --out dev-card.png`
-- **Browser**: Open SVG, screenshot at 1200x675
-- **ImageMagick**: `convert dev-card.svg dev-card.png`
+PNG conversion is automatic using platform-native tools (macOS `qlmanage`, Linux `rsvg-convert`, or ImageMagick).
 
 ## For Developers
 
