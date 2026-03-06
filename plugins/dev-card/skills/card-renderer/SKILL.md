@@ -94,7 +94,7 @@ The card viewBox is exactly 1200x675. ALL content MUST fit within this boundary.
 **Hard rules:**
 - No text or element may extend beyond x=1140 (60px right margin). This includes text rendered at large font sizes — estimate monospace text width as `charCount * fontSize * 0.6`.
 - No text or element may extend beyond y=660 (15px bottom margin).
-- Fun stat text: max 90 characters per line. If longer, wrap to a second `<tspan>`.
+- Fun stat text: max 80 characters total. If the text exceeds 45 characters, split into 2 lines using `<tspan>` elements at a word boundary. Each line max 45 characters. The containing box height must be 56px (1 line) or 72px (2 lines).
 - Description text: wrap at word boundaries only (never split a word mid-character). Each line max 50 characters, max 2 lines.
 - Stats row: if using a horizontal layout, limit to 4 stats max. Use shorter labels (e.g. "+200K" instead of "+200,892") if numbers would overflow.
 - Number formatting: shorten large numbers with K/M suffixes when they exceed 6 digits (e.g. 200892 → "201K", 1500000 → "1.5M").

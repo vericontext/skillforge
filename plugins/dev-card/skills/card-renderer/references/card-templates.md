@@ -57,11 +57,15 @@ All `{{PLACEHOLDER}}` values must be replaced with actual data before writing to
   <text x="{{BADGE3_TX}}" y="288" font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
         font-size="12" font-weight="500" fill="{{ACCENT}}" text-anchor="middle">{{BADGE3}}</text>
 
-  <!-- Fun stat -->
-  <text x="48" y="340" font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
-        font-size="13" fill="{{TEXT_MUTED}}" font-style="italic">
-    <tspan x="48" dy="0">"{{FUN_STAT_LINE1}}</tspan>
-    <tspan x="48" dy="18">{{FUN_STAT_LINE2}}"</tspan>
+  <!-- Fun stat (left column, boxed) -->
+  <rect x="48" y="320" width="500" height="72" rx="10"
+        fill="{{STAT_BG}}" stroke="{{STAT_BORDER}}" stroke-width="1" />
+  <text x="68" y="340" font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="11" fill="{{TEXT_MUTED}}" font-weight="500" letter-spacing="0.5">FUN STAT</text>
+  <text x="68" y="360" font-family="Inter,-apple-system,Helvetica,Arial,sans-serif"
+        font-size="12" fill="{{TEXT}}" font-style="italic">
+    <tspan x="68" dy="0">{{FUN_STAT_LINE1}}</tspan>
+    <tspan x="68" dy="18">{{FUN_STAT_LINE2}}</tspan>
   </text>
 
   <!-- Author & repo -->

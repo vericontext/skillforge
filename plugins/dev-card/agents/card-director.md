@@ -95,13 +95,13 @@ When `--lang=en` (default):
 - `title`: Persona title in English
 - `description`: 1-2 sentence description (creative, slightly humorous)
 - `badges`: 3 characteristic badges in English
-- `funStat`: One surprising statistic. Be specific with numbers.
+- `funStat`: One surprising statistic. **Must be 80 characters or fewer.** Be specific with numbers but keep it concise.
 
 When `--lang=ko`:
 - `title`: Persona title in Korean (from the ko column above)
 - `description`: 1-2 sentence description in Korean
 - `badges`: 3 characteristic badges in Korean
-- `funStat`: One surprising statistic in Korean
+- `funStat`: One surprising statistic in Korean. **Must be 80 characters or fewer.**
 
 Only generate fields for the selected language. Do NOT include both languages in the same persona.json.
 
