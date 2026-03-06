@@ -42,9 +42,14 @@ claude plugin install <plugin-name>
 
 ### Update
 
+Always run `marketplace update` first to fetch the latest index, then update the plugin:
+
 ```bash
-claude plugin marketplace update && claude plugin update <plugin-name>
+claude plugin marketplace update
+claude plugin update <plugin-name>@claude-skills
 ```
+
+> **Note:** `plugin update` alone checks against the locally cached index. Without `marketplace update` first, it will report "already at the latest version" even when a new version exists.
 
 ### Local testing (for development)
 
